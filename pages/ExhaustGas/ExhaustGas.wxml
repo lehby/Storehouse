@@ -1,0 +1,36 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 退气入库 -->
+<view hidden="{{currentTab!==0}}">
+    <view class="bottleList" style="margin-top: 20rpx;">
+        <view >用气编号 :</view>
+        <view class="bottleList_right"><input placeholder="请输入用气编号" /></view>
+    </view>
+    <view class="bottleList">
+        <view >退气重量 :</view>
+        <view class="bottleList_right"><input placeholder="请输入收气总价" /></view>
+    </view>
+     <view class="bottleList">
+        <view >总价 :</view>
+        <view class="bottleList_right"><input placeholder="请输入收气总量(公斤)" /></view>
+    </view>
+    <view class="btn">提交</view>
+</view>
+<!-- 退气记录 -->
+<view hidden="{{currentTab!==1}}">
+    <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist">
+        <view class="RecordList_top">
+            <view>入库时间: {{item.Inventorytime}}</view>
+            <view>入库人: {{item.InventoryName}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>用气编号: {{item.GasNumber}}瓶</view>
+            <view style="margin-top:30rpx;">重量: {{item.GasWeight}}G</view>
+            <view style="margin-top:30rpx;">总价: ￥{{item.TotalPrice}}</view>
+        </view>
+    </view>
+</view>

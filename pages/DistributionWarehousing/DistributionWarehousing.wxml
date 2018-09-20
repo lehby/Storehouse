@@ -1,0 +1,62 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 配送入库 -->
+<view hidden="{{currentTab!==0}}">
+    <view class="goods" bindtap="Distribution" style="margin-top: 20rpx;">
+        <view>选配送工 :</view>
+        <view class="right">
+            <view>{{DistributionWorker}}</view>
+            <view style="font-size: 56rpx;">></view>
+        </view>
+    </view>
+    <!-- 选配送工弹框 -->
+    <view class="modal-mask" bindtap="DivisionModal" catchtouchmove="preventTouchMove" wx:if="{{DivisionModal}}"></view>
+    <view class="modal-dialog" wx:if="{{DivisionModal}}" style=" top:20%;">
+        <view class="modal-title"></view>
+        <view class="btn-Photograph">配送工</view>
+        <radio-group class="group" bindchange="PaymentChange">
+            <view class="label-2" wx:for="{{PaymentItems}}" wx:key="PaymentItems">
+                <label class="label-2-text" for="{{item.name}}">
+                    <text>{{item.name}}</text>
+                </label>
+                <label class="label-2-text" for="{{item.vehicle}}">
+                    <text>{{item.vehicle}}</text>
+                </label>
+                <radio id="{{item.name}}" value="{{item.name}}" checked="{{item.checked}}"></radio>
+            </view>
+        </radio-group>
+        <view class="modal-footer">
+            <view class="btn-cancel" bindtap="DivisionCancel">取消</view>
+            <view class="btn-confirm" bindtap="DivisionConfirm">确定</view>
+        </view>
+    </view>
+    <view class="bottleList flex">
+        <view>回空瓶 :</view>
+        <view class="bottleList_right">3瓶</view>
+    </view>
+    <view class="bottleList flex">
+        <view>押瓶数 :</view>
+        <view class="bottleList_right">3瓶</view>
+    </view>
+    <view class="bottleList flex">
+        <view>欠瓶数 :</view>
+        <view class="bottleList_right">3瓶</view>
+    </view>
+</view>
+<!-- 配送记录 -->
+<view hidden="{{currentTab!==1}}">
+     <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="DistributionWarehousingDetails">
+        <view class="RecordList_top">
+            <view>入库时间: {{item.Recordtime}}</view>
+            <view>入库人: {{item.RecordName}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>用气编号: {{item.RecordNumber}}</view>
+            <view style="margin-top:30rpx;">配送工: {{item.RecordDistribution}}</view>
+        </view>
+    </view>
+</view>

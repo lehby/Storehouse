@@ -1,0 +1,41 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 配送出库 -->
+<view hidden="{{currentTab!==0}}">
+    <checkbox-group bindchange="checkboxChange">
+        <view class="Distributionlist" wx:for="{{Distributionlist}}" wx:for-item="item" wx:key="Distributionlist" data-index="{{index}}">
+            <view class="Distributionlist_left">
+                <view>联系电话: {{item.Phone}}</view>
+                <view style="margin-top: 10rpx;">配送地址: {{item.Address}}</view>
+                <view style="margin-top: 10rpx;">订单号: {{item.OddNumbers}}</view>
+            </view>
+            <view>
+                <label class="checkbox">
+                    <checkbox value="{{item.id}}" checked="{{item.checked}}" hidden='hidden' />
+                    <icon type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                    <icon type="success" size="23" wx:if="{{item.checked}}"></icon>
+                </label>
+            </view>
+        </view>
+    </checkbox-group>
+    <view class="btns">
+        <view class="btn_Determine">确定</view>
+    </view>
+</view>
+<!-- 配送记录 -->
+<view hidden="{{currentTab!==1}}">
+    <view class="RecordList" wx:for="{{Distributionlist}}" wx:for-item="item" wx:key="Distributionlist" bindtap="DistributionShipmentsDetails">
+        <view class="RecordList_top">
+            <view>出库时间: {{item.Operatortime}}</view>
+            <view>出库人: {{item.Operator}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>用气编号: {{item.OrderId}}</view>
+            <view style="margin-top:30rpx;">配送工: {{item.Distributionworker}}</view>
+        </view>
+    </view>
+</view>

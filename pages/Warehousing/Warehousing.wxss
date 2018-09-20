@@ -1,0 +1,2 @@
+@import "../Inventory/Inventory.wxss";
+@import "../InventoryDetails/InventoryDetails.wxss";

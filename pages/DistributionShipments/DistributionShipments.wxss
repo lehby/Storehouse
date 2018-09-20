@@ -1,0 +1,31 @@
+@import "../Inventory/Inventory.wxss";
+.Distributionlist{
+    padding: 36rpx 20rpx;
+    background-color: #fff;
+    margin-top: 16rpx;
+    font-size: 28rpx;
+    display:flex;
+}
+.Distributionlist_left{
+    width: 600rpx;
+}
+.btns{
+    width: 710rpx;
+    height: 84rpx;
+    background-color: #fff;
+    font-size: 28rpx;
+    padding: 0 20rpx;
+    position: fixed;
+    bottom: 0rpx;
+}
+.btn_Determine{
+    float: right;
+    width: 166rpx;
+    height: 60rpx;
+    background-color: #2269d4;
+    color: #fff;
+    line-height: 60rpx;
+    text-align: center;
+    border-radius: 50rpx;
+    margin-top:10rpx;
+}

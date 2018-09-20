@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/HomePage/HomePage",
+    "pages/ExhaustGas/ExhaustGas",
+    "pages/GasCollection/GasCollection",
+    "pages/DistributionWarehousing/DistributionWarehousing",
+    "pages/DistributionShipments/DistributionShipments",
+    "pages/WarehousingDetails/WarehousingDetails",
+    "pages/Warehousing/Warehousing",
+    "pages/Shipments/Shipments",
+    "pages/InventoryDetails/InventoryDetails",
+    "pages/Inventory/Inventory",
+    "pages/UnderBottle/UnderBottle",
+    "pages/EmptyBottle/EmptyBottle",
+    "pages/SelfUse/SelfUse",
+    "pages/ShipmentsDetails/ShipmentsDetails",
+    "pages/DistributionWarehousingDetails/DistributionWarehousingDetails",
+    "pages/DistributionShipmentsDetails/DistributionShipmentsDetails",
+    "pages/GasCollectionDetails/GasCollectionDetails",
+    "pages/SelfUseDetails/SelfUseDetails"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2269d4",
+    "navigationBarTitleText": "库管",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "black",
+    "selectedColor": "#245cd7",
+    "list": [
+      {
+        "pagePath": "pages/HomePage/HomePage",
+        "text": "首页",
+        "iconPath": "/imgs/11.png",
+        "selectedIconPath": "/imgs/111.png"
+      },
+      {
+        "pagePath": "pages/UnderBottle/UnderBottle",
+        "text": "欠瓶入库",
+        "iconPath": "/imgs/22.png",
+        "selectedIconPath": "/imgs/222.png"
+      },
+      {
+        "pagePath": "pages/EmptyBottle/EmptyBottle",
+        "text": "空瓶入库",
+        "iconPath": "/imgs/33.png",
+        "selectedIconPath": "/imgs/333.png"
+      }
+    ]
+  }
+}

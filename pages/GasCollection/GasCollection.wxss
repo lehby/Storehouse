@@ -1,0 +1,6 @@
+@import '../Inventory/Inventory.wxss';
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,76 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 收赠气 -->
+<view hidden="{{currentTab!==0}}">
+    <view class="goods" bindtap="goodsDisplay" style="margin-top: 20rpx;">
+        <view>选商品 :</view>
+        <view style="font-size: 56rpx;">></view>
+    </view>
+    <!-- 商品列表 -->
+    <view class="goods" style="padding: 0 52rpx;border-bottom: 2rpx solid #eee;" 
+    wx:for='{{goods}}' wx:for-item="item" wx:key="good.list" hidden="{{!isgoods}}">
+        <view>{{item.Name}}</view>
+        <view>￥{{item.Price}}</view>
+        <view class="goods_right">
+            <view style="margin-left: 12rpx;">X{{item.Quantity}}</view>
+            <view class="goods_right_text"></view>
+        </view>
+    </view>
+    <!-- 商品选择弹框 -->
+    <view class="modal-mask" bindtap="goodsHideModal" catchtouchmove="preventTouchMove" wx:if="{{showgoods}}"></view>
+    <view class="modal-dialog" wx:if="{{showgoods}}" style=" top:20%;">
+        <view class="modal-title"></view>
+        <view class="btn-Photograph">商品列表</view>
+        <view class="goodsList" wx:for='{{goodslist}}' wx:for-item="item" wx:key="good.name">
+            <view class="goodsList_text">{{item.Name}}</view>
+            <view class="goodsList_text">￥{{item.Price}}/{{item.PrceType}}</view>
+            <view class="Counter">
+                <view class="Counter_left" data-index='{{index}}' catchtap='subtracttap'>-</view>
+                <view class="Counter_middle">
+                    <view class='count' data-index='{{index}}' type='number' bindinput="Quantity">
+                        {{item.Quantity}}
+                    </view>
+                </view>
+                <view class="Counter_right" data-index="{{index}}" catchtap='addtap'>+</view>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view class="btn-cancel" bindtap="goodsCancel">取消</view>
+            <view class="btn-confirm" bindtap="goodsConfirm">确定</view>
+        </view>
+    </view>
+    <view class="bottleList flex">
+        <view >瓶数总量 :</view>
+        <view class="bottleList_right">4瓶</view>
+    </view>
+    <view class="bottleList">
+        <view >用气编号 :</view>
+        <view class="bottleList_right"><input placeholder="请输入用气编号" /></view>
+    </view>
+    <view class="bottleList">
+        <view >收气价格 :</view>
+        <view class="bottleList_right"><input placeholder="请输入收气总价" /></view>
+    </view>
+     <view class="bottleList">
+        <view >瓶留气 :</view>
+        <view class="bottleList_right"><input placeholder="请输入收气总量(公斤)" /></view>
+    </view>
+    <view class="btn">提交</view>
+</view>
+<!-- 收赠气记录 -->
+<view hidden="{{currentTab!==1}}">
+    <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="GasCollectionDetails">
+        <view class="RecordList_top">
+            <view>入库时间: {{item.Inventorytime}}</view>
+            <view>入库人: {{item.InventoryName}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>瓶数总量: {{item.BottleNumber}}瓶</view>
+            <view style="margin-top:30rpx;">瓶留气: {{item.BottleGas}}吨</view>
+        </view>
+    </view>
+</view>

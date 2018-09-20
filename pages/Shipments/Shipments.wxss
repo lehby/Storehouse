@@ -1,0 +1,7 @@
+@import "../Inventory/Inventory.wxss";
+
+.FillingList{
+    padding: 30rpx 0;
+    font-size: 28rpx;
+    text-align: center;
+}

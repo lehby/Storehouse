@@ -1,0 +1,21 @@
+.Palace{
+    display: flex;
+}
+.box{
+    width: 354rpx;
+    height: 262rpx;
+    margin: 10rpx 20rpx;
+    background-color: #fff;
+    border-radius: 8rpx;
+    box-shadow: darkgrey 0px 0px 15px 5px;
+}
+.box>image{
+    width: 104rpx;
+    height: 104rpx;
+    margin-left:120rpx;
+    margin-top:40rpx;
+}
+.box>view{
+    display: flex;
+    justify-content: center;
+}

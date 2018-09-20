@@ -1,0 +1,36 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 欠瓶入库 -->
+<view hidden="{{currentTab!==0}}">
+    <view class="bottleList" style="margin-top: 20rpx;">
+        <view >用气编号 :</view>
+        <view class="bottleList_right"><input placeholder="请输入用气编号" /></view>
+    </view>
+    <view class="bottleList">
+        <view >欠瓶数量 :</view>
+        <view class="bottleList_right"><input placeholder="请输入客户总欠瓶数" /></view>
+    </view>
+    <view class="bottleList">
+        <view >入库数量 :</view>
+        <view class="bottleList_right"><input placeholder="默认欠瓶数量,可修改" /></view>
+    </view>
+    <view class="btn">提交</view>
+</view>
+<!-- 欠瓶记录 -->
+<view hidden="{{currentTab!==1}}">
+    <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="InventoryDetails">
+        <view class="RecordList_top">
+            <view>入库时间: {{item.Inventorytime}}</view>
+            <view>入库人: {{item.InventoryName}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>用气编号: {{item.GasNumber}}</view>
+            <view style="margin-top:30rpx;">欠瓶数量: {{item.OweBottle}}瓶</view>
+            <view style="margin-top:30rpx;">入库数量: {{item.WarehousingNumber}}瓶</view>
+        </view>
+    </view>
+</view>

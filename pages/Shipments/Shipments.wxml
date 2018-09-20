@@ -1,0 +1,109 @@
+<!-- 导航条 -->
+<view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+        {{item}}
+    </text>
+</view>
+<!-- 充装出库 -->
+<view hidden="{{currentTab!==0}}">
+    <view class="bottleList" style="margin-top: 20rpx;">
+        <view>驾驶员 :</view>
+        <view class="bottleList_right">
+            <input placeholder="请输入驾驶员" />
+        </view>
+    </view>
+    <!-- 选商品 -->
+    <view class="goods" bindtap="goodsDisplay">
+        <view>选商品 :</view>
+        <view style="font-size: 56rpx;">></view>
+    </view>
+     <!-- 商品列表 -->
+    <view class="goods" style="padding: 0 52rpx;border-bottom: 2rpx solid #eee;" 
+    wx:for='{{goods}}' wx:for-item="item" wx:key="good.list" hidden="{{!isgoods}}">
+        <view>{{item.Name}}</view>
+        <view>￥{{item.Price}}</view>
+        <view class="goods_right">
+            <view style="margin-left: 12rpx;">X{{item.Quantity}}</view>
+            <view class="goods_right_text"></view>
+        </view>
+    </view>
+    <!-- 商品选择弹框 -->
+    <view class="modal-mask" bindtap="goodsHideModal" catchtouchmove="preventTouchMove" wx:if="{{showgoods}}"></view>
+    <view class="modal-dialog" wx:if="{{showgoods}}" style=" top:20%;">
+        <view class="modal-title"></view>
+        <view class="btn-Photograph">商品列表</view>
+        <view class="goodsList" wx:for='{{goodslist}}' wx:for-item="item" wx:key="good.name">
+            <view class="goodsList_text">{{item.Name}}</view>
+            <view class="goodsList_text">￥{{item.Price}}/{{item.PrceType}}</view>
+            <view class="Counter">
+                <view class="Counter_left" data-index='{{index}}' catchtap='subtracttap'>-</view>
+                <view class="Counter_middle">
+                    <view class='count' data-index='{{index}}' type='number' bindinput="Quantity">
+                        {{item.Quantity}}
+                    </view>
+                </view>
+                <view class="Counter_right" data-index="{{index}}" catchtap='addtap'>+</view>
+            </view>
+        </view>
+        <view class="modal-footer">
+            <view class="btn-cancel" bindtap="goodsCancel">取消</view>
+            <view class="btn-confirm" bindtap="goodsConfirm">确定</view>
+        </view>
+    </view>
+    <!-- 充装站 -->
+    <view class="goods" bindtap="Filling">
+        <view>充装站 :</view>
+        <view class="goods_right">
+            <view style="margin-right: 20rpx;">{{FillingName}}</view>
+            <view style="font-size: 56rpx;">></view>
+        </view>
+    </view>
+    <!-- 充装站选择弹框 -->
+    <view class="modal-mask" bindtap="FillingHideModal" catchtouchmove="preventTouchMove" wx:if="{{showFilling}}"></view>
+    <view class="modal-dialog" wx:if="{{showFilling}}" style=" top:20%;">
+        <view class="modal-title"></view>
+        <view class="btn-Photograph">选择充装站</view>
+        <view 
+            class="FillingList" 
+            wx:for="{{FillingList}}" 
+            wx:for-item="item" 
+            wx:key="FillingList" 
+            data-index="{{index}}" 
+            bindtap="option">{{item}}</view>
+        <view class="modal-footer">
+        </view>
+    </view>
+    <view class="bottleList" >
+        <view>运输车辆 :</view>
+        <view class="bottleList_right">
+            <input placeholder="请输入车辆车牌号" />
+        </view>
+    </view>
+     <view class="bottleList" >
+        <view>充装详情 :</view>
+        <view class="bottleList_right">
+            <input placeholder="13*12+14*11" />
+        </view>
+    </view>
+    <view class="bottleList" >
+        <view>充装量 :</view>
+        <view class="bottleList_right">
+            <input placeholder="等于充装详情总量" />
+        </view>
+    </view>
+    <view class="btn">提交</view>
+</view>
+<!-- 充装记录 -->
+<view hidden="{{currentTab!==1}}">
+    <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="ShipmentsDetails">
+        <view class="RecordList_top">
+            <view>出库时间: {{item.Recordtime}}</view>
+            <view>出库人: {{item.RecordName}}</view>
+        </view>
+        <view class="RecordList_bottom">
+            <view>出库单号: {{item.RecordNumber}}</view>
+            <view style="margin-top:30rpx;">充装站: {{item.RecordAddress}}</view>
+            <view style="margin-top:30rpx;">充装量: {{item.FillingTotal}}公斤</view>
+        </view>
+    </view>
+</view>

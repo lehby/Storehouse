@@ -1,0 +1,40 @@
+<view class="Palace">
+    <view class="box" bindtap="onInventory">
+        <image src="../../imgs/p.png" />
+        <view >盘点</view>
+    </view>
+    <view class="box" bindtap="onShipments">
+        <image src="../../imgs/c.png" />
+        <view >充装出库</view>
+    </view>
+</view>
+<view class="Palace">
+    <view class="box" bindtap="onWarehousing">
+        <image src="../../imgs/444.png" />
+        <view >充装入库</view>
+    </view>
+    <view class="box" bindtap="onDistributionShipments">
+        <image src="../../imgs/555.png" />
+        <view >配送出库</view>
+    </view>
+</view>
+<view class="Palace" bindtap="onDistributionWarehousing">
+    <view class="box" >
+        <image src="../../imgs/666.png" />
+        <view >配送入库</view>
+    </view>
+    <view class="box" bindtap="onGasCollection">
+        <image src="../../imgs/77.png" />
+        <view >收增气</view>
+    </view>
+</view>
+<view class="Palace" >
+    <view class="box" bindtap="onExhaustGas">
+        <image src="../../imgs/888.png" />
+        <view >退气入库</view>
+    </view>
+    <view class="box" bindtap="onSelfUse">
+        <image src="../../imgs/999.png" />
+        <view >自用入库</view>
+    </view>
+</view>

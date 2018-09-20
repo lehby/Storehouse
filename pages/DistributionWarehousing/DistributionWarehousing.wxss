@@ -1,0 +1,77 @@
+@import "../Inventory/Inventory.wxss";
+
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.modal-mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0.5;
+    overflow: hidden;
+    z-index: 9000;
+    color: #fff;
+  }
+  
+  .modal-dialog {
+    width: 680rpx;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 9999;
+    background: #f9f9f9;
+    margin: -180rpx 34rpx;
+    border-radius: 36rpx;
+  }
+  .modal-title {
+    /* padding-top: 42rpx; */
+    font-size: 36rpx;
+    color: #030303;
+    text-align: center;
+  }
+  .btn-Photograph{
+    width: 680rpx;
+    height: 81rpx;
+    text-align: center;
+    line-height: 89rpx;
+    color: #fff;
+    background-color: #2269D4 ;
+    font-size: 46rpx;
+    font-weight: 900;
+  }
+  .modal-footer {
+    display: flex;
+    flex-direction: row;
+    height: 86rpx;
+    border-top: 1px solid #dedede;
+    font-size: 34rpx;
+    line-height: 86rpx;
+  }
+  
+  .btn-cancel {
+    width: 50%;
+    color: #007aff;
+    text-align: center;
+    border-right: 1px solid #dedede;
+  }
+  .btn-confirm {
+    width: 50%;
+    color: #007aff;
+    text-align: center;
+  }
+  .label-2{
+    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between;
+  }
+.right{
+  display: flex;
+}
+.right>view:nth-child(2){
+  margin-left: 20rpx;
+}
