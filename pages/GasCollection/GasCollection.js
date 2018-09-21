@@ -5,6 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    submission:{
+      identifief:"",//客户编号
+      name:"",//用户名
+      goodsname: "",//库存商品
+      quantity:"",//数量
+      money:"",//退瓶金额
+      nay:"",//是否
+      weight:"",//重量
+      refund:""//退款
+    },
     navbar: ['收赠气', '收赠气记录'],
     currentTab: 0,
     showgoods: false,//控制商品弹框隐藏显示
@@ -69,7 +79,18 @@ Page({
         BottleNumber:"9",
         BottleGas:"300"
       },
-    ]
+    ],
+    sex: [
+      {
+        name: '1',
+        value: '是',
+        checked: ""
+      },
+      {
+        name: "0",
+        value: "否",
+        checked: 'true'
+      }],
   },
   //收赠气详情
   GasCollectionDetails(){
@@ -88,8 +109,9 @@ Page({
   ongoods(e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      goodsname: this.data.goodslist[index].Name
+      "submission.submission": this.data.goodslist[index].Name
     })
+    console.log(this.data.submission.goodsname)
     this.goodsHideModal();
   },
     /**
@@ -113,7 +135,10 @@ Page({
       showgoods: true,
     })
   },
-  
+  // 获取表单值
+  submitOrder:function(e){
+console.log(e)
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -121,6 +146,8 @@ Page({
   onLoad: function (options) {
 
   },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

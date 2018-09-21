@@ -1,70 +1,87 @@
 <!-- 导航条 -->
 <view class="navbar">
-    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
         {{item}}
     </text>
 </view>
 <!-- 退瓶退气 -->
+<form bindsubmit='submitOrder'>
 <view hidden="{{currentTab!==0}}">
-    <view class="bottleList" style="margin-top: 20rpx;">
-        <view >用气编号 :</view>
-        <view class="bottleList_right"><input placeholder="请输入用气编号" /></view>
+  <view class="bottleList" style='margin-top:20rpx;'>
+    <view>客服编号 :</view>
+    <view class="bottleList_right">
+      <input placeholder="请输入客服编号" value='{{submission.identifief}}' />
     </view>
-     <view class="bottleList flex">
-        <view >客户名称 :</view>
-        <view class="bottleList_right"></view>
+  </view>
+  <view class="bottleList flex">
+    <view>客户名称 :</view>
+    <view class="bottleList_right">{{submission.name}}</view>
+  </view>
+  <view class="bottleList flex" bindtap='goodsDisplay'>
+    <view>客户库存 </view>
+    <view class="bottleList_right stock">
+      <view>{{goodsname}}</view>
+      <view>></view>
     </view>
-    <view class="bottleList" style="margin-top: 20rpx;">
-        <view >退瓶金额 :</view>
-        <view class="bottleList_right"><input placeholder="请输入退瓶金额" /></view>
+  </view>
+  <view class="bottleList"  >
+    <view>数量 :</view>
+    <view class="bottleList_right">
+      <input placeholder="请输入数量" value='{{submission.quantity}}'/>
     </view>
-    <view class="bottleList" style="margin-top: 20rpx;">
-        <view >重量 :</view>
-        <view class="bottleList_right"><input placeholder="请输入重量" /></view>
+  </view>
+  <view class="bottleList" >
+    <view>退瓶金额 :</view>
+    <view class="bottleList_right">
+      <input placeholder="请输入退瓶金额" value='{{submission.money}}'/>
     </view>
-     <view class="bottleList" style="margin-top: 20rpx;">
-        <view >退气金额 :</view>
-        <view class="bottleList_right"><input placeholder="请输入退气金额" /></view>
+  </view>
+  <!-- 商品选择弹框 -->
+  <view class="modal-mask" bindtap="goodsHideModal" catchtouchmove="preventTouchMove" wx:if="{{showgoods}}"></view>
+  <view class="modal-dialog" wx:if="{{showgoods}}" style=" top:20%;">
+    <view class="modal-title"></view>
+    <view class="btn-Photograph">商品列表</view>
+    <view class="goodsList" wx:for='{{goodslist}}' wx:for-item="item" wx:key="good.name" data-index="{{index}}" bindtap="ongoods">
+      {{item.Name}}
     </view>
-    <!-- 商品选择弹框 -->
-    <view class="modal-mask" bindtap="goodsHideModal" catchtouchmove="preventTouchMove" wx:if="{{showgoods}}"></view>
-    <view class="modal-dialog" wx:if="{{showgoods}}" style=" top:20%;">
-        <view class="modal-title"></view>
-        <view class="btn-Photograph">商品列表</view>
-         <view class="goodsList" wx:for='{{goodslist}}' wx:for-item="item" wx:key="good.name" data-index="{{index}}" bindtap="ongoods">
-            {{item.Name}}
-        </view>
-        <view class="modal-footer">
-        </view>
+    <view class="modal-footer">
     </view>
-    <view class="bottleList flex">
-        <view >瓶数总量 :</view>
-        <view class="bottleList_right">4瓶</view>
+  </view>
+  <view class='form-item'>
+    <view class='form-title cur'>
+      是否退气:
     </view>
-    <view class="bottleList" style="margin-top: 20rpx;">
-        <view >用气编号 :</view>
-        <view class="bottleList_right"><input placeholder="请输入用气编号" /></view>
+    <radio-group class="radio-group" name='sex' data-type='sex' bindchange='sex'>
+      <label class="radio" wx:for="{{sex}}" wx:key="id">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </radio-group>
+  </view>
+  <view class="bottleList" >
+    <view>重量 :</view>
+    <view class="bottleList_right">
+      <input placeholder="请输入重量" value='{{submission.weight}}'/>
     </view>
-    <view class="bottleList">
-        <view >收气价格 :</view>
-        <view class="bottleList_right"><input placeholder="请输入收气总价" /></view>
+  </view>
+  <view class="bottleList">
+    <view>退钱金额 :</view>
+    <view class="bottleList_right">
+      <input placeholder="请输入退款金额" value='{{submission.refund}}'/>
     </view>
-     <view class="bottleList">
-        <view >瓶留气 :</view>
-        <view class="bottleList_right"><input placeholder="请输入收气总量(公斤)" /></view>
-    </view>
-    <view class="btn">提交</view>
+  </view>
+  <view class="btn" bindtap='submitOrder'>提交</view>
 </view>
+</form>
 <!-- 退瓶退气记录 -->
 <view hidden="{{currentTab!==1}}">
-    <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="GasCollectionDetails">
-        <view class="RecordList_top">
-            <view>入库时间: {{item.Inventorytime}}</view>
-            <view>入库人: {{item.InventoryName}}</view>
-        </view>
-        <view class="RecordList_bottom">
-            <view>瓶数总量: {{item.BottleNumber}}瓶</view>
-            <view style="margin-top:30rpx;">瓶留气: {{item.BottleGas}}吨</view>
-        </view>
+  <view class="RecordList" wx:for="{{Recordlist}}" wx:for-item="item" wx:key="Recordlist" bindtap="GasCollectionDetails">
+    <view class="RecordList_top">
+      <view>入库时间: {{item.Inventorytime}}</view>
+      <view>入库人: {{item.InventoryName}}</view>
     </view>
+    <view class="RecordList_bottom">
+      <view>瓶数总量: {{item.BottleNumber}}瓶</view>
+      <view style="margin-top:30rpx;">瓶留气: {{item.BottleGas}}吨</view>
+    </view>
+  </view>
 </view>
