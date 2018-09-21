@@ -5,3 +5,12 @@
     font-size: 28rpx;
     text-align: center;
 }
+.bottleList2{
+    height: 88rpx;
+    line-height: 88rpx;
+    background-color: #fff;
+    padding: 0 20rpx;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: space-between;
+}
