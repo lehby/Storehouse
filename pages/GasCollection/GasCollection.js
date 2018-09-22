@@ -109,7 +109,7 @@ Page({
   ongoods(e) {
     let index = e.currentTarget.dataset.index
     this.setData({
-      "submission.submission": this.data.goodslist[index].Name
+      "submission.goodsname": this.data.goodslist[index].Name
     })
     console.log(this.data.submission.goodsname)
     this.goodsHideModal();
@@ -136,10 +136,52 @@ Page({
     })
   },
   // 获取表单值
-  submitOrder:function(e){
-console.log(e)
+  // 获取客服编号
+  identifief:function(e){
+    let identifief1 = e.detail.value
+    this.setData({
+      "submission.identifief": identifief1
+    })
   },
-
+  // 数量
+  quantity:function(e){
+    let quantity1 = e.detail.value
+    this.setData({
+      "submission.quantity": quantity1
+    })
+  },
+  // 退瓶金额
+  money:function(e){
+    let money1 = e.detail.value
+    this.setData({
+      "submission.money": money1
+    })
+  },
+  // 是否退气
+  sex:function(e){
+    let sex1 = e.detail.value
+    this.setData({
+      "submission.nay": sex1
+    })
+  },
+// 重量
+  weight:function(e){
+    let weight1 = e.detail.value
+    this.setData({
+      "submission.weight": weight1
+    })
+  },
+  // 退钱金额
+  refund:function(e){
+    let refund1 = e.detail.value
+    this.setData({
+      "submission.refund": refund1
+    })
+  },
+  // 表单提交
+  submitOrder:function(){
+    console.log(this.data.submission)
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -10,7 +10,7 @@
   <view class="bottleList" style='margin-top:20rpx;'>
     <view>客服编号 :</view>
     <view class="bottleList_right">
-      <input placeholder="请输入客服编号" value='{{submission.identifief}}' />
+      <input placeholder="请输入客服编号" data-type='identifief' bindinput="identifief"/>
     </view>
   </view>
   <view class="bottleList flex">
@@ -20,20 +20,20 @@
   <view class="bottleList flex" bindtap='goodsDisplay'>
     <view>客户库存 </view>
     <view class="bottleList_right stock">
-      <view>{{goodsname}}</view>
+      <view>{{submission.goodsname}}</view>
       <view>></view>
     </view>
   </view>
   <view class="bottleList"  >
     <view>数量 :</view>
     <view class="bottleList_right">
-      <input placeholder="请输入数量" value='{{submission.quantity}}'/>
+      <input placeholder="请输入数量" data-type='quantity' bindinput="quantity"/>
     </view>
   </view>
   <view class="bottleList" >
     <view>退瓶金额 :</view>
     <view class="bottleList_right">
-      <input placeholder="请输入退瓶金额" value='{{submission.money}}'/>
+      <input placeholder="请输入退瓶金额" data-type='money' bindinput="money"/>
     </view>
   </view>
   <!-- 商品选择弹框 -->
@@ -60,13 +60,13 @@
   <view class="bottleList" >
     <view>重量 :</view>
     <view class="bottleList_right">
-      <input placeholder="请输入重量" value='{{submission.weight}}'/>
+      <input placeholder="请输入重量" data-type='weight' bindinput="weight"/>
     </view>
   </view>
   <view class="bottleList">
     <view>退钱金额 :</view>
     <view class="bottleList_right">
-      <input placeholder="请输入退款金额" value='{{submission.refund}}'/>
+      <input placeholder="请输入退款金额" data-type='refund' bindinput="refund"/>
     </view>
   </view>
   <view class="btn" bindtap='submitOrder'>提交</view>
