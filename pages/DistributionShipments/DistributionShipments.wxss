@@ -29,3 +29,12 @@
     border-radius: 50rpx;
     margin-top:10rpx;
 }
+.Distributionworker{
+    margin-top: 10rpx;
+}
+.from{
+    margin-top: 10rpx;
+}
+.top{
+    margin-top:10rpx;
+}

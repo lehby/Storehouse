@@ -28,7 +28,19 @@
     <view>DD345657</view>
 </view>
 <view class="information">
-    <view>入库总量</view>
+    <view>空瓶</view>
+    <view>8瓶</view>
+</view>
+<view class="information">
+    <view>押瓶</view>
+    <view>8瓶</view>
+</view>
+<view class="information">
+    <view>欠瓶</view>
+    <view>8瓶</view>
+</view>
+<view class="information">
+    <view>重瓶</view>
     <view>8瓶</view>
 </view>
 <view class="information">

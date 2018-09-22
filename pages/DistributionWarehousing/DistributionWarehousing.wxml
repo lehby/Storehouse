@@ -46,6 +46,10 @@
         <view>欠瓶数 :</view>
         <view class="bottleList_right">3瓶</view>
     </view>
+    <view class="bottleList flex">
+        <view>重瓶数 :</view>
+        <view class="bottleList_right">3瓶</view>
+    </view>
 </view>
 <!-- 配送记录 -->
 <view hidden="{{currentTab!==1}}">
@@ -55,8 +59,11 @@
             <view>入库人: {{item.RecordName}}</view>
         </view>
         <view class="RecordList_bottom">
-            <view>用气编号: {{item.RecordNumber}}</view>
-            <view style="margin-top:30rpx;">配送工: {{item.RecordDistribution}}</view>
+            <view class="top">配送工: {{item.RecordDistribution}}</view>
+            <view class="top">回空瓶: 3瓶</view>
+            <view class="top">押瓶数: 3瓶</view>
+            <view class="top">欠瓶数: 3瓶</view>
+            <view class="top">重瓶数: 3瓶</view>
         </view>
     </view>
 </view>
