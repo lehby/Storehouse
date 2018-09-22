@@ -25,7 +25,7 @@
     </view>
     <view class="box" bindtap="onGasCollection">
         <image src="../../imgs/77.png" />
-        <view >收赠气</view>
+        <view >退瓶退气</view>
     </view>
 </view>
 <view class="Palace" >

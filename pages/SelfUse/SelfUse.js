@@ -41,6 +41,7 @@ Page({
         PrceType: "瓶",
       }
     ],
+    goodsname:"",
     goods:[],
     Quantity: 0,
     Price: 0,
@@ -71,6 +72,14 @@ Page({
       },
     ]
   },
+   //商品选中点击事件
+   ongoods(e){
+    let index=e.currentTarget.dataset.index
+    this.setData({
+      goodsname:this.data.goodslist[index].Name
+    })
+    this.goodsHideModal();
+  },
   //钢瓶自用详情
   SelfUseDetails(){
     wx.navigateTo({
@@ -97,82 +106,11 @@ Page({
     });
   },
   /**
-   * 商品对话框取消按钮点击事件
-   */
-  goodsCancel: function () {
-    this.goodsHideModal();
-  },
-  /**
-   * 商品对话框确认按钮点击事件
-   */
-  goodsConfirm: function () {
-    let goodslist = this.data.goodslist;
-    let goods = [];
-    for (let i = 0; i < goodslist.length; i++) {
-      if (goodslist[i].Quantity > 0) {
-        goods.push(goodslist[i])
-      }
-    }
-    console.log(goods)
-    this.setData({
-      isgoods: true,
-      goods
-    })
-    this.goodsHideModal();
-  },
-  /**
    * 商品点击显示弹框
    */
   goodsDisplay() {
     this.setData({
       showgoods: true,
-    })
-  },
-  /**
-  * 用户点击商品减1
-  */
-  subtracttap: function (e) {
-    const index = e.target.dataset.index;
-    const goodslist = this.data.goodslist;
-    const Quantity = goodslist[index].Quantity;
-    if (Quantity <= 0) {
-      return;
-    } else {
-      goodslist[index].Quantity--;
-      this.setData({
-        goodslist: goodslist
-      });
-    }
-    this.calculateTotal();
-  },
-  /**
-    * 用户点击商品加1
-    */
-  addtap: function (e) {
-    const index = e.target.dataset.index;
-    const goodslist = this.data.goodslist;
-    const Quantity = goodslist[index].Quantity;
-    goodslist[index].Quantity++;
-    this.setData({
-      goodslist: goodslist
-    });
-    this.calculateTotal();
-  },
-  /**
-  * 计算商品总数
-  */
-  calculateTotal: function () {
-    let goodslist = this.data.goodslist;
-    let Count = 0;
-    let Price = 0;
-    for (let i = 0; i < goodslist.length; i++) {
-      let good = goodslist[i];
-      Count += good.Quantity;
-      Price += good.Quantity * good.Price;
-    }
-    this.setData({
-      Quantity: Count,
-      Price: Price
     })
   },
 
