@@ -43,9 +43,9 @@
       },
       {
         "pagePath": "pages/EmptyBottle/EmptyBottle",
-        "text": "空瓶入库",
-        "iconPath": "/imgs/33.png",
-        "selectedIconPath": "/imgs/333.png"
+        "text": "库存报表",
+        "iconPath": "/imgs/Statistics.png",
+        "selectedIconPath": "/imgs/Statistics1.png"
       }
     ]
   }

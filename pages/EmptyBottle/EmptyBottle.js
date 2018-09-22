@@ -5,169 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navbar: ['回收空瓶', '回收记录'],
-    currentTab: 0,
-    showgoods: false,//控制商品弹框隐藏显示
-    isgoods: false,//控制商品列表的显示隐藏
-    goodslist: [
-      {
-        Name: "商品1",
-        Price: 120,
-        Quantity: 0,//计数
-        PrceType: "公斤",
-      },
-      {
-        Name: "商品2",
-        Price: 120,
-        Quantity: 0,//计数
-        PrceType: "公斤",
-      },
-      {
-        Name: "商品3",
-        Price: 120,
-        Quantity: 0,//计数
-        PrceType: "瓶",
-      },
-      {
-        Name: "商品4",
-        Price: 120,
-        Quantity: 0,//计数
-        PrceType: "公斤",
-      },
-      {
-        Name: "商品5",
-        Price: 120,
-        Quantity: 0,//计数
-        PrceType: "瓶",
-      }
-    ],
-    goods:[],
-    Quantity:"",
-    Price: 0,
-    Recordlist:[
-      {
-        Inventorytime:"2018-08-23",
-        InventoryName:"郑速度",
-        GasNumber:"546848134",
-        DistributionWorker:"王某某"
-      },
-      {
-        Inventorytime:"2018-08-23",
-        InventoryName:"郑速度",
-        GasNumber:"546848134",
-        DistributionWorker:"王某某"
-      },
-      {
-        Inventorytime:"2018-08-23",
-        InventoryName:"郑速度",
-        GasNumber:"546848134",
-        DistributionWorker:"王某某"
-      },
-      {
-        Inventorytime:"2018-08-23",
-        InventoryName:"郑速度",
-        GasNumber:"546848134",
-        DistributionWorker:"王某某"
-      },
-    ]
-  },
-  //导航控制
-  navbarTap: function (e) {
-    this.setData({
-      currentTab: e.currentTarget.dataset.idx
-    })
-  },
+    date: '2018-09-01',
+    enddate:"2018-09-03",
+    time: '12:01',
+    winWidth: 0,
+    winHeight: 0,
+    currentTab: 0, // tab切换
+    arrears: [{ name: "小红", img:"../../imgs/calendar.png",money:"80"},
+      { name: "大号", img: "../../imgs/calendar.png", money: "80" },
+      { name: "西瓜", img: "../../imgs/calendar.png", money: "100" },
+      { name: "冬菇", img: "../../imgs/calendar.png", money: "80" },
+      { name: "冬瓜", img: "../../imgs/calendar.png", money: "80" },
+      { name: "南瓜", img: "../../imgs/calendar.png", money: "80" },]
 
-  /**
-   * 商品弹出框蒙层截断touchmove事件
-   */
-  preventTouchMove: function () {
   },
-  /**
-   * 商品隐藏模态对话框
-   */
-  goodsHideModal: function () {
+  // 开始时间
+  bindDateChange: function (e) {
+  
     this.setData({
-      showgoods: false
-    });
-  },
-  /**
-   * 商品对话框取消按钮点击事件
-   */
-  goodsCancel: function () {
-    this.goodsHideModal();
-  },
-  /**
-   * 商品对话框确认按钮点击事件
-   */
-  goodsConfirm: function () {
-    let goodslist = this.data.goodslist;
-    let goods = [];
-    for (let i = 0; i < goodslist.length; i++) {
-      if (goodslist[i].Quantity > 0) {
-        goods.push(goodslist[i])
-      }
-    }
-    console.log(goods)
-    this.setData({
-      isgoods: true,
-      goods
-    })
-    this.goodsHideModal();
-  },
-  /**
-   * 商品点击显示弹框
-   */
-  goodsDisplay() {
-    this.setData({
-      showgoods: true,
+      date: e.detail.value
     })
   },
-  /**
-  * 用户点击商品减1
-  */
-  subtracttap: function (e) {
-    const index = e.target.dataset.index;
-    const goodslist = this.data.goodslist;
-    const Quantity = goodslist[index].Quantity;
-    if (Quantity <= 0) {
-      return;
-    } else {
-      goodslist[index].Quantity--;
-      this.setData({
-        goodslist: goodslist
-      });
-    }
-    this.calculateTotal();
-  },
-  /**
-    * 用户点击商品加1
-    */
-  addtap: function (e) {
-    const index = e.target.dataset.index;
-    const goodslist = this.data.goodslist;
-    const Quantity = goodslist[index].Quantity;
-    goodslist[index].Quantity++;
+  // 结束时间
+  bindData: function (e) {
+    console.log(e)
     this.setData({
-      goodslist: goodslist
-    });
-    this.calculateTotal();
-  },
-  /**
-  * 计算商品总数
-  */
-  calculateTotal: function () {
-    let goodslist = this.data.goodslist;
-    let Count = 0;
-    let Price = 0;
-    for (let i = 0; i < goodslist.length; i++) {
-      let good = goodslist[i];
-      Count += good.Quantity;
-      Price += good.Quantity * good.Price;
-    }
-    this.setData({
-      Quantity: Count+"瓶",
-      Price: Price
+      enddate: e.detail.value
     })
   },
 
@@ -175,7 +38,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    /**
+     * 获取系统信息
+     */
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight
+        });
+      }
+    });
+    // 控制容器高度，让内容完全显示
+    //创建节点选择器
+    var query = wx.createSelectorQuery();
+    query.select('.whole').boundingClientRect(function (rect) {
+      var leng = that.data.arrears.length
+      that.setData({
+        winHeight: rect.height * leng + 50
+      })
+    }).exec();
+  },
+  
+      bindChange: function (e) {
+        var that = this;
+        that.setData({ currentTab: e.detail.current });
+      },
+  swichNav: function (e) {
+    var that = this;
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
 
   /**

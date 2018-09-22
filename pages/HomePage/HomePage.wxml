@@ -29,11 +29,7 @@
     </view>
 </view>
 <view class="Palace" >
-    <view class="box" bindtap="onExhaustGas">
-        <image src="../../imgs/888.png" />
-        <view >退气入库</view>
-    </view>
-    <view class="box" bindtap="onSelfUse">
+    <view class="box" style="width:336rpx;" bindtap="onSelfUse">
         <image src="../../imgs/999.png" />
         <view >自用入库</view>
     </view>
